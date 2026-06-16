@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Locals News</title>
+
+    <!-- link out to your CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Locals News</h1>
+    </header>
+    <nav class="menu-bar">
+      <ul class="menu">
+        <li class="dropdown">
+          <a href="about.html">About US</a>
+        </li>
+        <li class="dropdown">
+          <a href="#">Locations ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="Town_A.html">Town A</a></li>
+            <li><a href="Town_B.html">Town B</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="sing-up.html">Volunteer to Write</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="overview"></section>
+
+    
+    <div class="content">
+
+      <section id="general" class="section-text">
+        <h2>Single</h2>
+        <p>
+          Test
+        </p>
+      </section>
+      
+      <section id="details" class="section-text">
+        <div class="two-col">
+          <div>
+            <h2>Left</h2>
+            <p>Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columnsTest paragraph for columns</p>
+          </div>
+
+          <div>
+            <h2>Right</h2>
+            <p>Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columnsTest paragraph for columns</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="outline" class="section-text">
+        <div class="three-col">
+          <div>
+            <h2>Left</h2>
+            <p>Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columnsTest paragraph for columns</p>
+          </div>
+
+          <div>
+            <h2>Middle</h2>
+            <p>Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columnsTest paragraph for columns</p>
+          </div>
+
+          <div>
+            <h2>Right</h2>
+            <p>Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columns Test paragraph for columnsTest paragraph for columnsTest paragraph for columnsTest paragraph for columns</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- tabs.js to wire up the tab buttons -->
+    <script>
+      document.querySelectorAll('.map-tabs .tab-btn')
+        .forEach(btn => {
+          btn.addEventListener('click', () => {
+            // deactivate all
+            document
+              .querySelectorAll('.map-tabs .tab-btn')
+              .forEach(b => b.classList.remove('active'));
+            document
+              .querySelectorAll('.map-tabs .tab-content')
+              .forEach(c => c.classList.remove('active'));
+
+            // activate the one we clicked
+            btn.classList.add('active');
+            document
+              .getElementById(btn.dataset.target)
+              .classList.add('active');
+          });
+        });
+    </script>
+    <script>
+      const header   = document.querySelector('.header');
+      const menuBar  = document.querySelector('.menu-bar');
+      let   lastScroll = window.pageYOffset;
+    
+      // on load: menu sits under the header
+      menuBar.classList.add('initial');
+    
+      window.addEventListener('scroll', () => {
+        const current = window.pageYOffset;
+    
+        if (current > lastScroll && current > header.offsetHeight) {
+          // scrolling DOWN past the header → hide header, pin menu to top
+          header.classList.add('hidden');
+          menuBar.classList.remove('initial');
+          menuBar.style.top = '0';
+        } else if (current < lastScroll) {
+          // scrolling UP → show header again, push menu back down
+          header.classList.remove('hidden');
+          menuBar.classList.add('initial');
+          menuBar.style.top = header.offsetHeight + 'px';
+        }
+    
+        lastScroll = current;
+      });
+    </script>    
+  </body>
+</html>
